@@ -1,5 +1,14 @@
+import {Game} from "./Game.jsx";
+
 function App() {
-  return <p>test</p>
+  return (
+    <>
+      <header>
+        <h1>Memory Card</h1>
+      </header>
+      <Game />
+    </>
+  )
 }
 
-export default App
+export { App }
