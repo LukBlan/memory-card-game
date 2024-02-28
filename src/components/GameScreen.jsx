@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { fetchAllPokemons } from "../domain/pokemons.js";
+import {PokemonCard} from "./PokemonCard.jsx";
 
-function GameScreen({ difficulty }) {
+function GameScreen({ difficulty, onGameOver }) {
   const [playerLose, setPlayerLose] = useState(false)
   const [score, setScore] = useState(0)
   const [pokemons, setPokemons] = useState([])
@@ -11,17 +12,19 @@ function GameScreen({ difficulty }) {
     fetchAllPokemons(amountPokemonsToFetch).then(result => setPokemons(result))
   }, [score]);
 
-  console.log(pokemons.length)
-
   return (
     <>
       {
         playerLose ?
-        <button>Retry</button> :
-        <>
-          {pokemons.map(pokemons => <img key={pokemons.name} src={pokemons.src} alt={pokemons.name} />) }
-          <button onClick={() => setScore(score + 1)}>{difficulty.name} {pokemons.length}</button>
-        </>
+          <>
+            <button onClick={() => setPlayerLose(false)}>Retry</button>
+            <button onClick={onGameOver(null)}>Return</button>
+          </>
+          :
+          <>
+            {pokemons.map(pokemon =>  <PokemonCard pokemon={pokemon}/> ) }
+            <button onClick={() => setPlayerLose(true)}>{difficulty.name} {pokemons.length}</button>
+          </>
       }
 
     </>
