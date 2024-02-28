@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {StartScreen} from "./StartScreen.jsx";
+import {GameScreen} from "./GameScreen.jsx";
 
 const difficulties = [
   { name: "Easy", cards: 3 },
@@ -11,9 +12,14 @@ function Game() {
   const [currentDifficulty, setCurrentDifficulty] = useState(null)
   const changeCurrentDifficulty = (difficulty) => () => setCurrentDifficulty(difficulty)
 
+  const userChooseDifficulty = currentDifficulty !== null
+
   return (
     <>
-      <StartScreen difficulties={difficulties} onDifficultyChange={changeCurrentDifficulty}></StartScreen>
+      {userChooseDifficulty ?
+      <GameScreen difficulty={currentDifficulty} /> :
+      <StartScreen difficulties={difficulties} onDifficultyChange={changeCurrentDifficulty}></StartScreen>}
+
     </>
   )
 }
