@@ -24,8 +24,20 @@ function getAmountRandomPokemons(amount) {
   return randomPokemons;
 }
 
+async function fetchAllPokemons(amount) {
+  const result = []
+  const pokemons = getAmountRandomPokemons(amount)
+
+  const response = await Promise.all(pokemons.map(pokemonName => fetchPokemon(pokemonName)))
+
+  response.forEach(promiseResponse => {result.push(
+    {name: promiseResponse.forms[0].name, src: promiseResponse.sprites.front_default})}
+  )
+  return result;
+}
+
 function fetchPokemon(pokemonName) {
   return fetch(url + pokemonName).then(result => result.json())
 }
 
-export { getAmountRandomPokemons, fetchPokemon }
+export { fetchAllPokemons }

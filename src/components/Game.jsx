@@ -18,8 +18,7 @@ function Game() {
     <>
       {userChooseDifficulty ?
       <GameScreen difficulty={currentDifficulty} /> :
-      <StartScreen difficulties={difficulties} onDifficultyChange={changeCurrentDifficulty}></StartScreen>}
-
+      <StartScreen difficulties={difficulties} onDifficultyChange={changeCurrentDifficulty} />}
     </>
   )
 }
