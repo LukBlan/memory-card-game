@@ -4,7 +4,7 @@ function App() {
   return (
     <>
       <header>
-        <h1>Memory Card</h1>
+        <h1>Memory Game</h1>
       </header>
       <Game />
     </>
