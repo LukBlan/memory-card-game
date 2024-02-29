@@ -34,10 +34,10 @@ function GameScreen({ difficulty, onGameOver }) {
           :
           <>
             <p>Player score {score}</p>
-            {pokemons.map(pokemon =>  <PokemonCard key={pokemon.name} onClick={selectPokemon} pokemon={pokemon}/> ) }
-            <button onClick={() => setPlayerLose(true)}>
-              {difficulty.name}
-            </button>
+
+            <ul className="pokemons-card-list">
+              {pokemons.map(pokemon =>  <PokemonCard key={pokemon.name} onClick={selectPokemon} pokemon={pokemon}/> ) }
+            </ul>
           </>
       }
 
