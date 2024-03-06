@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { fetchAllPokemons } from "../domain/pokemons.js";
 import {PokemonCard} from "./PokemonCard.jsx";
+import {GameOverScreen} from "./GameOverScreen.jsx";
 
 function GameScreen({ difficulty, onGameOver }) {
   const [playerLose, setPlayerLose] = useState(false)
   const [score, setScore] = useState(0)
   const [pokemons, setPokemons] = useState([])
   const [selectedPokemons, setSelectedPokemons] = useState([])
+
+  const changePlayerLose = () => setPlayerLose(false)
 
   const selectPokemon = (pokemonName) => () => {
     if (selectedPokemons.includes(pokemonName)) {
@@ -25,13 +28,7 @@ function GameScreen({ difficulty, onGameOver }) {
   return (
     <>
       {
-        playerLose ?
-          <>
-            <p>You Loose</p>
-            <button onClick={() => setPlayerLose(false)}>Retry</button>
-            <button onClick={onGameOver(null)}>Return</button>
-          </>
-          :
+        playerLose ? <GameOverScreen onRetry={changePlayerLose} onReturnToMainScreen={onGameOver(null)}/> :
           <>
             <p>Player score {score}</p>
 
@@ -40,7 +37,6 @@ function GameScreen({ difficulty, onGameOver }) {
             </ul>
           </>
       }
-
     </>
   )
 }
