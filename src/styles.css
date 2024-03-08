@@ -10,11 +10,8 @@ html {
   user-select: none;
 }
 
-html, body, #root {
-  height: 100%;
-}
-
 #root {
+  min-height: 100vh;
   display: grid;
   grid-template-rows: min-content min-content;
   gap: 30px;
@@ -61,8 +58,12 @@ h1 {
 }
 
 .pokemon-card {
+  color: white;
+  font-variant: all-petite-caps;
+  background-color: indianred;
+  border: 3px ridge #eee;
+  padding: 5px;
   cursor: pointer;
-  font-size: 1.3rem;
   text-align: center;
   box-shadow: 0 1px 3px rgba(0,0,0,0.5);
   opacity: 0;
@@ -84,11 +85,6 @@ h1 {
   animation-delay: 0.4s;
 }
 
-
-.pokemon-card:hover {
-  background: #eee;
-}
-
 .game-over-screen {
   display: flex;
   justify-content: center;
@@ -103,6 +99,7 @@ h1 {
 }
 
 .game-over-button {
+  background-color: white;
   cursor: pointer;
   appearance: none;
   border: none;
@@ -115,9 +112,23 @@ h1 {
   background: #ccc;
 }
 
+.score-board {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.score-board-text {
+  background: black;
+  color: white;
+  padding: 5px 8px;
+  border-radius: 7px;
+}
+
 @keyframes enterFromLeft {
   0% {
-    transform: translateX(-300%);
+    transform: translateX(-300%) rotateZ(-90deg);
   }
 
   100% {
