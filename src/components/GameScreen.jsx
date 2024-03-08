@@ -4,16 +4,19 @@ import {PokemonCard} from "./PokemonCard.jsx";
 import {GameOverScreen} from "./GameOverScreen.jsx";
 import {ScoreBoard} from "./ScoreBoard.jsx";
 
-function GameScreen({ difficulty, onGameOver, onScoreChange, score }) {
+function GameScreen({ difficulty, onGameOver, onScoreChange, score, onScoreReset }) {
   const [playerLose, setPlayerLose] = useState(false)
   const [pokemons, setPokemons] = useState([])
   const [selectedPokemons, setSelectedPokemons] = useState([])
 
   const changePlayerLose = () => setPlayerLose(false)
+  const resetPokemons = () => setSelectedPokemons([])
 
   const selectPokemon = (pokemonName) => () => {
     if (selectedPokemons.includes(pokemonName)) {
       setPlayerLose(true)
+      resetPokemons()
+      onScoreReset()
     } else {
       setSelectedPokemons([...selectedPokemons, pokemonName])
       onScoreChange()

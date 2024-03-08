@@ -8,7 +8,7 @@ const difficulties = [
   { name: "Hard", cards: 5 },
 ]
 
-function Game({onScoreChange, score}) {
+function Game({onScoreChange, score, onScoreReset}) {
   const [currentDifficulty, setCurrentDifficulty] = useState(null)
   const changeCurrentDifficulty = (difficulty) => () => setCurrentDifficulty(difficulty)
   const userChooseDifficulty = currentDifficulty !== null
@@ -19,7 +19,8 @@ function Game({onScoreChange, score}) {
       <GameScreen score={score}
                   onScoreChange={onScoreChange}
                   onGameOver={changeCurrentDifficulty}
-                  difficulty={currentDifficulty} />
+                  difficulty={currentDifficulty}
+                  onScoreReset={onScoreReset} />
         :
       <StartScreen difficulties={difficulties} onDifficultyChange={changeCurrentDifficulty} />}
     </>

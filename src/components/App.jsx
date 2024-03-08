@@ -6,9 +6,11 @@ function App() {
   const [scoreObject, setScoreObject] = useState({score: 0, maxScore: 0})
   const score = scoreObject.score
 
+  const resetScore = () => setScoreObject({...scoreObject, score: 0})
+
   function changeScore() {
     const newScore = score + 1;
-    const updateMaxScore = score > scoreObject.maxScore;
+    const updateMaxScore = newScore > scoreObject.maxScore;
     const newObject = {...scoreObject, score: newScore}
 
     if (updateMaxScore) {
@@ -18,13 +20,14 @@ function App() {
     setScoreObject(newObject)
   }
 
+
   return (
     <>
       <ScoreBoard scoreObject={scoreObject}/>
       <header>
         <h1>Memory Game</h1>
       </header>
-      <Game score={score} onScoreChange={changeScore}/>
+      <Game score={score} onScoreChange={changeScore} onScoreReset={resetScore}/>
     </>
   )
 }
