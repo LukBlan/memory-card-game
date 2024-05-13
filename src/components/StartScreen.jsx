@@ -5,7 +5,7 @@ function StartScreen({difficulties, onDifficultyChange}) {
     <>
       <ul className="difficulty-buttons-list">
         {
-          difficulties.map(difficulty => <li><DifficultyButton key={difficulty.name}
+          difficulties.map(difficulty => <li key={difficulty.name}><DifficultyButton
                                                                difficulty={difficulty}
                                                                onClick={onDifficultyChange(difficulty)}/></li>)
         }

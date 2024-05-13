@@ -34,7 +34,8 @@ function GameScreen({ difficulty, onGameOver, onScoreChange, score, onScoreReset
         playerLose ? <GameOverScreen onRetry={changePlayerLose} onReturnToMainScreen={onGameOver(null)}/> :
           <>
             <ul className="pokemons-card-list">
-              {pokemons.map(pokemon =>  <PokemonCard key={pokemon.name} onClick={selectPokemon} pokemon={pokemon}/> ) }
+              {/* I use Math.random() as a key because i want all images to be refreshed */}
+              {pokemons.map(pokemon =>  <PokemonCard key={Math.random() * 100} onClick={selectPokemon} pokemon={pokemon}/> ) }
             </ul>
           </>
       }
